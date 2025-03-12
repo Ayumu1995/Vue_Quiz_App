@@ -21,6 +21,15 @@
       </div>
     </div>
   </div>
+  <h5 class="mt-4">Quiz Scores:</h5>
+<ul v-if="user.scores && user.scores.length > 0" class="list-group">
+  <li v-for="(score, index) in user.scores" :key="index" class="list-group-item">
+    <strong>{{ score.date }}</strong> - 
+    <span class="text-secondary">{{ score.category }}</span>: 
+    <span class="text-primary">{{ score.score }}/{{ score.total }} ({{ score.percentage }}%)</span>
+  </li>
+</ul>
+<p v-else>No quiz scores available.</p>
 </template>
 
 <script>
@@ -32,9 +41,9 @@ export default {
     };
   },
   created() {
-    const loggedInUser = localStorage.getItem('loggedInUser');
+    const loggedInUser = localStorage.getItem('loggedInUser');  
     if (loggedInUser) {
-      this.user = JSON.parse(loggedInUser);
+      this.user = JSON.parse(loggedInUser);   // tulio
     } else {
       this.$router.push('/');
     }
