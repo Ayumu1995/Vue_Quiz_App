@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import ProfilePage from "../views/ProfilePage.vue";
 import HomePage from "../views/HomePage.vue";
-import TaskDetail from "../views/TaskDetail.vue";
+// import TaskDetail from "../views/TaskDetail.vue";
 import CategoryPage from "@/views/CategoryPage.vue";
 import QuizPage from "@/views/QuizPage.vue";
 import ResultPage from "@/views/ResultPage.vue";
@@ -18,12 +18,12 @@ const routes = [
       name: "profile",
       component: ProfilePage,
    },
-   {
-      path: "/task/:id",
-      name: "task-detail",
-      component: TaskDetail,
-      props: true, // route with props
-   },
+   // {
+   //    path: "/task/:id",
+   //    name: "task-detail",
+   //    component: TaskDetail,
+   //    props: true, // route with props
+   // },
    {
       path: "/categories",
       name: "categories",

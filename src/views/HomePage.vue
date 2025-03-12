@@ -63,7 +63,7 @@
  export default {
    name: 'HomePage',
    data() {
-     return {
+     return {     // TULIO
        registerForm: {
          name: '',
          username: '',
@@ -84,11 +84,11 @@
        users.push(user); // push user into storage
        localStorage.setItem('users', JSON.stringify(users));
        alert('You completed your registration. Please log in.');
-       this.registerForm = { name: '', username: '', email: '', password: '' };
+       this.registerForm = { name: '', username: '', email: '', password: '' };  // TULIO
      },
      login() {
        const users = JSON.parse(localStorage.getItem('users') || '[]'); // will get user from storage
-       const user = users.find(u => u.username === this.loginForm.username && u.password === this.loginForm.password);
+       const user = users.find(u => u.username === this.loginForm.username && u.password === this.loginForm.password); // daniel/tulio
        if (user) { // if user was found
          localStorage.setItem('loggedInUser', JSON.stringify(user));
          this.$router.push('/profile');

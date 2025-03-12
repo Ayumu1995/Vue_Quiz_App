@@ -16,6 +16,33 @@ export default {
             path: "/categories",
          });
       },
+      saveQuizScore() {
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser")); //daniel
+  if (loggedInUser) {
+    const users = JSON.parse(localStorage.getItem("users")) || []; // daniel
+    const userIndex = users.findIndex(u => u.username === loggedInUser.username);
+
+    if (userIndex !== -1) {
+      const newScore = {
+        date: new Date().toLocaleString(),
+        category: this.$route.query.quizCategory,  
+        score: this.score,
+        total: this.quizAmount,
+        percentage: this.evaluateScore.percentage
+      };
+
+      if (!users[userIndex].scores) {
+        users[userIndex].scores = [];
+      }
+
+      users[userIndex].scores.push(newScore);
+      localStorage.setItem("users", JSON.stringify(users));  // daniel
+
+      loggedInUser.scores = users[userIndex].scores;
+      localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser)); // daniel
+    }
+  }
+}
    },
    computed: {
       score() {
@@ -31,7 +58,13 @@ export default {
          if (percentage >= 50) return { percentage: percentage, message: "Not bad!" };
          return { percentage: percentage, message: "Keep studying!" };
       },
+      quizCategory() {
+  return this.$route.query.quizCategory || ".."; 
+}
    },
+   mounted() {
+  this.saveQuizScore(); // score save when the page loads
+}
 };
 </script>
 
