@@ -23,7 +23,7 @@
                   :key="index"
                   class="btn option-border d-block my-2 w-100"
                   :class="{
-                     'selected hover:bg-gray-50': selectedAnswer === option,
+                     'selected hover:bg-gray-50': selectedAnswer[currentQuizIndex] === option,
                   }"
                   @click="selectAnswer(option)"
                >
@@ -66,8 +66,7 @@ export default {
          categoryId: this.$route.params.id,
          categoryName: "",
          currentQuizIndex: 0,
-         selectedAnswer: null,
-         score: 0,
+         selectedAnswer: [],
       };
    },
    computed: {
@@ -123,28 +122,26 @@ export default {
       nextQuiz() {
          if (this.currentQuizIndex < this.quizzes.length - 1) {
             this.currentQuizIndex++;
-            this.selectedAnswer = null;
          } else {
-            console.log("All questions completed!");
+            console.log("All questions completed!", this.selectedAnswer);
             this.$router.push({
                path: "/result",
-               query: { score: this.score, quizAmount: this.quizzes.length, quizCategory: this.categoryName },
+               query: {
+                  quizzes: JSON.stringify(this.quizzes),
+                  selectedAnswer: JSON.stringify(this.selectedAnswer),
+                  quizAmount: this.quizzes.length,
+                  quizCategory: this.categoryName,
+               },
             });
          }
       },
       previousQuiz() {
          if (this.currentQuizIndex > 0) {
             this.currentQuizIndex--;
-            this.selectedAnswer = null;
          }
       },
       selectAnswer(answer) {
-         if (this.selectedAnswer === null) {
-            this.selectedAnswer = answer;
-            if (answer === this.currentQuiz.correct_answer) {
-               this.score++;
-            }
-         }
+         this.selectedAnswer[this.currentQuizIndex] = answer;
       },
       shuffleArray(array) {
          return array
