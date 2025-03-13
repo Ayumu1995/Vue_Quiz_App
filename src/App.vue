@@ -5,11 +5,11 @@
          <router-link to="/profile" class="nav-link text-dark" active-class="active"
             >Profile</router-link
          >
-         <router-link to="/task/1" class="nav-link text-dark" active-class="active"
+         <!-- <router-link to="/task/1" class="nav-link text-dark" active-class="active"
             >Task Details</router-link
-         >
+         > -->
          <router-link to="/categories" class="nav-link text-dark" active-class="active"
-            >Categories</router-link
+            >Quizz</router-link
          >
       </nav>
       <main>

@@ -128,7 +128,7 @@ export default {
             console.log("All questions completed!");
             this.$router.push({
                path: "/result",
-               query: { score: this.score, quizAmount: this.quizzes.length },
+               query: { score: this.score, quizAmount: this.quizzes.length, quizCategory: this.categoryName },
             });
          }
       },
