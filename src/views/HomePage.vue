@@ -77,6 +77,12 @@
        users: []  // Local storage for users
      };
    },
+   created() {
+  const loggedInUser = localStorage.getItem("loggedInUser");
+  if (loggedInUser) {
+    this.$router.push("/profile"); // check for user and redirects to profile.
+  }
+},
    methods: {
      register() {
        const user = { ...this.registerForm }; // referral to the form user

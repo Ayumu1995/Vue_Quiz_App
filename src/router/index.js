@@ -48,6 +48,8 @@ router.beforeEach((to, from, next) => {
    const authRequired = !publicPages.includes(to.path);
    const loggedIn = localStorage.getItem("loggedInUser");
 
+ 
+
    if (authRequired && !loggedIn) {
       alert("You need to log in to access this page."); // alert for auth
       next("/"); // redirect to home page if not auth
